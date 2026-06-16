@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice">
+  <!-- Vision hero banner: dark-luxe abstract field, gold-rim glasses silhouette,
+       soft light streaks. Self-contained palette (reads well on light AND dark pages). No text. -->
+  <defs>
+    <!-- Deep charcoal-navy field -->
+    <linearGradient id="field" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10121a"/>
+      <stop offset=".48" stop-color="#171b26"/>
+      <stop offset="1" stop-color="#0b0d13"/>
+    </linearGradient>
+    <!-- Warm gold ambience behind the silhouette -->
+    <radialGradient id="amb" cx=".5" cy=".46" r=".62">
+      <stop offset="0" stop-color="#d4af6a" stop-opacity=".20"/>
+      <stop offset=".55" stop-color="#d4af6a" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#d4af6a" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Gold rim metal -->
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6e2a6"/>
+      <stop offset=".45" stop-color="#c9a227"/>
+      <stop offset="1" stop-color="#8a6a30"/>
+    </linearGradient>
+    <!-- Temple stubs fade out toward the edges -->
+    <linearGradient id="fadeL" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#c9a227" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#c9a227" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c9a227" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#c9a227" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Light streak beams -->
+    <linearGradient id="beamW" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beamG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d4af6a" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#d4af6a" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#d4af6a" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Subtle smoke-glass lens tint -->
+    <radialGradient id="lensT" cx=".35" cy=".3" r=".9">
+      <stop offset="0" stop-color="#e8d9b0" stop-opacity=".10"/>
+      <stop offset=".6" stop-color="#9aa4b4" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#0b0d13" stop-opacity=".12"/>
+    </radialGradient>
+    <!-- Edge vignette -->
+    <radialGradient id="vig" cx=".5" cy=".5" r=".75">
+      <stop offset="0" stop-color="#06070b" stop-opacity="0"/>
+      <stop offset=".72" stop-color="#06070b" stop-opacity="0"/>
+      <stop offset="1" stop-color="#06070b" stop-opacity=".55"/>
+    </radialGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="haze" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <!-- Background field + ambience -->
+  <rect width="1600" height="700" fill="url(#field)"/>
+  <rect width="1600" height="700" fill="url(#amb)"/>
+
+  <!-- Soft diagonal light streaks sweeping across the field -->
+  <g filter="url(#soft)">
+    <path d="M-140,560 L760,-120 L920,-120 L-20,560 Z" fill="url(#beamW)"/>
+    <path d="M260,760 L1240,-140 L1330,-140 L350,760 Z" fill="url(#beamG)"/>
+    <path d="M820,820 L1740,-60 L1800,-60 L900,820 Z" fill="url(#beamW)" opacity=".7"/>
+  </g>
+
+  <!-- Faint horizon line behind the silhouette -->
+  <path d="M120,432 H1480" stroke="#d4af6a" stroke-width="1.4" opacity=".14"/>
+
+  <!-- Warm pool of light beneath the glasses -->
+  <ellipse cx="800" cy="560" rx="430" ry="48" fill="#c9a227" opacity=".13" filter="url(#soft)"/>
+
+  <!-- ============ Gold-rim glasses silhouette ============ -->
+  <g stroke-linecap="round">
+    <!-- Lens tints -->
+    <circle cx="612" cy="372" r="158" fill="url(#lensT)"/>
+    <circle cx="988" cy="372" r="158" fill="url(#lensT)"/>
+
+    <!-- Rim under-glow -->
+    <g filter="url(#haze)" opacity=".5">
+      <circle cx="612" cy="372" r="158" fill="none" stroke="#c9a227" stroke-width="16"/>
+      <circle cx="988" cy="372" r="158" fill="none" stroke="#c9a227" stroke-width="16"/>
+    </g>
+
+    <!-- Gold rims -->
+    <circle cx="612" cy="372" r="158" fill="none" stroke="url(#gold)" stroke-width="10"/>
+    <circle cx="988" cy="372" r="158" fill="none" stroke="url(#gold)" stroke-width="10"/>
+
+    <!-- Keyhole bridge -->
+    <path d="M764,330 Q800,292 836,330" fill="none" stroke="url(#gold)" stroke-width="9"/>
+    <path d="M772,348 Q800,322 828,348" fill="none" stroke="#c9a227" stroke-width="4" opacity=".55"/>
+
+    <!-- Temple stubs fading toward the frame edges -->
+    <path d="M458,352 Q380,330 268,316" fill="none" stroke="url(#fadeL)" stroke-width="9"/>
+    <path d="M1142,352 Q1220,330 1332,316" fill="none" stroke="url(#fadeR)" stroke-width="9"/>
+
+    <!-- Rim highlights (specular sparkle, upper-left of each lens) -->
+    <path d="M498,290 A158,158 0 0 1 596,216" fill="none" stroke="#ffe9b3" stroke-width="4" opacity=".85"/>
+    <path d="M874,290 A158,158 0 0 1 972,216" fill="none" stroke="#ffe9b3" stroke-width="4" opacity=".85"/>
+
+    <!-- In-lens reflections -->
+    <path d="M540,470 L680,268 L712,268 L572,470 Z" fill="#ffffff" opacity=".07"/>
+    <path d="M916,470 L1056,268 L1088,268 L956,470 Z" fill="#ffffff" opacity=".07"/>
+    <path d="M518,332 Q560,268 632,250" fill="none" stroke="#ffffff" stroke-width="6" opacity=".10"/>
+    <path d="M894,332 Q936,268 1008,250" fill="none" stroke="#ffffff" stroke-width="6" opacity=".10"/>
+  </g>
+
+  <!-- Floating gold bokeh accents -->
+  <g fill="#d4af6a" filter="url(#haze)">
+    <circle cx="248" cy="170" r="9" opacity=".30"/>
+    <circle cx="382" cy="540" r="6" opacity=".22"/>
+    <circle cx="1262" cy="148" r="11" opacity=".26"/>
+    <circle cx="1408" cy="452" r="7" opacity=".22"/>
+    <circle cx="1120" cy="600" r="5" opacity=".18"/>
+    <circle cx="172" cy="380" r="5" opacity=".18"/>
+  </g>
+  <g fill="#f6e2a6">
+    <circle cx="300" cy="246" r="2.4" opacity=".55"/>
+    <circle cx="1330" cy="236" r="2.8" opacity=".5"/>
+    <circle cx="1198" cy="520" r="2" opacity=".45"/>
+    <circle cx="470" cy="118" r="2" opacity=".45"/>
+  </g>
+
+  <!-- Vignette -->
+  <rect width="1600" height="700" fill="url(#vig)"/>
+</svg>

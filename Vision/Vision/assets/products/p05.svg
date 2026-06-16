@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vision · p05 Halcyon Square — studio front view (SPEC §8)
+     frameType: Square · frame #1c1c1e (Black plastic) · lens #e8eef0 (Clear → fill-opacity .3) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <!-- Shared studio-sweep backdrop (identical in every product image) -->
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e3e3e0"/>
+    </radialGradient>
+    <!-- Soft blur for the ground shadow -->
+    <filter id="sh" x="-40%" y="-200%" width="180%" height="500%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <!-- Square lens geometry: bold rounded-corner rectangles -->
+    <rect id="eL" x="158" y="164" width="212" height="172" rx="30"/>
+    <rect id="eR" x="430" y="164" width="212" height="172" rx="30"/>
+    <clipPath id="cL"><use href="#eL"/></clipPath>
+    <clipPath id="cR"><use href="#eR"/></clipPath>
+    <!-- Frame line-work: chunky rims, flat acetate bridge, temple stubs -->
+    <g id="fr" fill="none" stroke-linecap="round">
+      <use href="#eL"/>
+      <use href="#eR"/>
+      <path d="M370 206Q400 192 430 206"/>
+      <path d="M160 186C146 181 134 178 122 176"/>
+      <path d="M640 186C654 181 666 178 678 176"/>
+    </g>
+    <!-- Diagonal glass-reflection streaks (clipped to each lens) -->
+    <g id="gl" fill="#fff">
+      <path d="M205 120 262 112 150 400 96 406Z" opacity=".22"/>
+      <path d="M292 108 316 105 212 408 190 410Z" opacity=".15"/>
+    </g>
+    <!-- Top-of-rim sheen -->
+    <path id="hl" d="M186 164Q264 160 342 164" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="400" cy="396" rx="238" ry="18" fill="#1c1c20" opacity=".16" filter="url(#sh)"/>
+
+  <!-- Lenses: clear demo tint -->
+  <use href="#eL" fill="#e8eef0" fill-opacity=".3"/>
+  <use href="#eR" fill="#e8eef0" fill-opacity=".3"/>
+  <g clip-path="url(#cL)"><use href="#gl"/></g>
+  <g clip-path="url(#cR)"><use href="#gl" x="272"/></g>
+
+  <!-- Frame: darker under-stroke for depth, then the glossy black acetate, then sheen -->
+  <use href="#fr" stroke="#0b0b0c" stroke-width="16" transform="translate(0 2.5)"/>
+  <use href="#fr" stroke="#1c1c1e" stroke-width="13"/>
+  <use href="#hl"/>
+  <use href="#hl" x="272"/>
+</svg>

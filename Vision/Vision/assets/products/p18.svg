@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vision · p18 Riviera Cat Eye — studio front view (SPEC §8)
+     frameType: Cat Eye · frame #c9a227 · lens #5a4634 (Sunglasses → fill-opacity .82) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <!-- Shared studio-sweep backdrop (identical in every product image) -->
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e3e3e0"/>
+    </radialGradient>
+    <!-- Soft blur for the ground shadow -->
+    <filter id="sh" x="-40%" y="-200%" width="180%" height="500%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <!-- Left lens geometry: upswept cat-eye, pointed outer tip (right half is a mirrored <use>) -->
+    <path id="ln" d="M150 184C226 160 318 196 346 222C358 234 360 266 348 286C326 318 226 324 182 304C150 290 138 218 150 184Z"/>
+    <clipPath id="cl"><use href="#ln"/></clipPath>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="400" cy="396" rx="232" ry="17" fill="#1c1c20" opacity=".16" filter="url(#sh)"/>
+
+  <!-- Left half: temple stub (attaches high at the upswept tip), lens, streaks, rim, top sheen -->
+  <g id="hf">
+    <path d="M152 196L106 180" fill="none" stroke="#98791c" stroke-width="9" stroke-linecap="round"/>
+    <use href="#ln" fill="#5a4634" fill-opacity=".82"/>
+    <g clip-path="url(#cl)" fill="#fff" opacity=".22">
+      <path d="M214 170h46L200 340h-46z"/>
+      <path d="M294 170h20L254 340h-20z"/>
+    </g>
+    <use href="#ln" fill="none" stroke="#98791c" stroke-width="14"/>
+    <use href="#ln" fill="none" stroke="#c9a227" stroke-width="10"/>
+    <path d="M170 180C236 162 312 192 336 214" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".3"/>
+  </g>
+  <use href="#hf" transform="translate(800 0) scale(-1 1)"/>
+
+  <!-- Bridge: darker under-stroke for depth, frame color on top -->
+  <path d="M348 234C372 212 428 212 452 234" fill="none" stroke="#98791c" stroke-width="13" stroke-linecap="round"/>
+  <path d="M348 234C372 212 428 212 452 234" fill="none" stroke="#c9a227" stroke-width="10" stroke-linecap="round"/>
+</svg>

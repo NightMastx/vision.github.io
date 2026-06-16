@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Vision gallery detail — macro lens close-up with layered reflections. Shared studio backdrop. -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e3e3e0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-300%" width="200%" height="700%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <!-- Curved glass body -->
+    <radialGradient id="glass" cx="38%" cy="30%" r="85%">
+      <stop offset="0" stop-color="#f0f6fa"/>
+      <stop offset=".55" stop-color="#c3d0db"/>
+      <stop offset="1" stop-color="#8e9fae"/>
+    </radialGradient>
+    <!-- Anti-reflective coating sheen (subtle green-to-violet cast) -->
+    <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7fd6c0" stop-opacity=".14"/>
+      <stop offset=".5" stop-color="#7fd6c0" stop-opacity="0"/>
+      <stop offset="1" stop-color="#a48fd0" stop-opacity=".12"/>
+    </linearGradient>
+    <clipPath id="disc"><circle cx="400" cy="238" r="166"/></clipPath>
+  </defs>
+
+  <!-- Studio sweep + ground shadow -->
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="400" cy="430" rx="215" ry="20" fill="#17171c" opacity=".18" filter="url(#soft)"/>
+
+  <!-- Polished bevel edge, then the glass disc -->
+  <circle cx="400" cy="238" r="173" fill="#aab6c1"/>
+  <circle cx="400" cy="238" r="173" fill="none" stroke="#7d8b99" stroke-width="2.5" opacity=".8"/>
+  <circle cx="400" cy="238" r="166" fill="url(#glass)"/>
+
+  <!-- Layered reflections inside the lens -->
+  <g clip-path="url(#disc)">
+    <!-- coating sheen across the surface -->
+    <circle cx="400" cy="238" r="166" fill="url(#coat)"/>
+    <!-- broad studio softbox reflection (two diagonal panes) -->
+    <path d="M260,430 L460,46 L536,46 L336,430 Z" fill="#ffffff" opacity=".30"/>
+    <path d="M362,444 L536,110 L566,110 L392,444 Z" fill="#ffffff" opacity=".18"/>
+    <!-- curved window-bar reflection, upper left -->
+    <path d="M268,170 Q318,96 408,84" fill="none" stroke="#ffffff" stroke-width="13" opacity=".5" stroke-linecap="round"/>
+    <path d="M286,206 Q330,140 404,124" fill="none" stroke="#ffffff" stroke-width="7" opacity=".32" stroke-linecap="round"/>
+    <!-- lens curvature contour rings -->
+    <circle cx="400" cy="238" r="142" fill="none" stroke="#ffffff" stroke-width="1.6" opacity=".22"/>
+    <circle cx="400" cy="238" r="112" fill="none" stroke="#ffffff" stroke-width="1.2" opacity=".14"/>
+    <!-- depth shading hugging the lower-right edge -->
+    <path d="M286,372 Q400,432 522,348 Q466,420 384,418 Q322,412 286,372 Z" fill="#5c6b7a" opacity=".30"/>
+    <path d="M508,128 Q552,178 556,250" fill="none" stroke="#5c6b7a" stroke-width="8" opacity=".22" stroke-linecap="round"/>
+    <!-- pinpoint specular sparkle -->
+    <circle cx="332" cy="142" r="9" fill="#ffffff" opacity=".75"/>
+    <circle cx="352" cy="160" r="4" fill="#ffffff" opacity=".5"/>
+  </g>
+
+  <!-- Bevel highlights: bright arc top-left, shaded arc bottom-right -->
+  <path d="M254,330 A173,173 0 0 1 318,90" fill="none" stroke="#ffffff" stroke-width="4" opacity=".65" stroke-linecap="round"/>
+  <path d="M548,322 A173,173 0 0 1 462,398" fill="none" stroke="#5c6b7a" stroke-width="4" opacity=".4" stroke-linecap="round"/>
+</svg>

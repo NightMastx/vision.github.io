@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Vision side profile — Rectangle frame (temple-arm view). Charcoal #2a2a2c, shared studio backdrop. -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e3e3e0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-300%" width="200%" height="700%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <linearGradient id="lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9f0f5"/>
+      <stop offset="1" stop-color="#c6d2db"/>
+    </linearGradient>
+    <clipPath id="lc"><rect x="150" y="190" width="122" height="112" rx="15"/></clipPath>
+  </defs>
+
+  <!-- Studio sweep + ground shadow -->
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="400" cy="396" rx="255" ry="19" fill="#17171c" opacity=".17" filter="url(#soft)"/>
+
+  <!-- Slim straight temple: depth pass, face pass, top sheen -->
+  <path d="M262,212 L586,206 Q605,206 614,222 Q635,252 641,280" fill="none" stroke="#1a1a1d" stroke-width="12" stroke-linecap="round"/>
+  <path d="M262,212 L586,206 Q605,206 614,222 Q635,252 641,280" fill="none" stroke="#2a2a2c" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M268,208.5 L582,202.5" fill="none" stroke="#86868e" stroke-width="1.8" stroke-linecap="round" opacity=".55"/>
+  <circle cx="641" cy="280" r="5.5" fill="#2a2a2c"/>
+
+  <!-- Slim rectangular lens seen edge-on (low, wide proportions) -->
+  <rect x="150" y="190" width="122" height="112" rx="15" fill="url(#lens)" opacity=".34"/>
+  <g clip-path="url(#lc)">
+    <path d="M138,310 L242,178 L276,178 L172,310 Z" fill="#ffffff" opacity=".22"/>
+    <path d="M190,316 L282,200 L294,200 L202,316 Z" fill="#ffffff" opacity=".14"/>
+  </g>
+  <rect x="152" y="193" width="122" height="112" rx="15" fill="none" stroke="#19191c" stroke-width="11"/>
+  <rect x="150" y="190" width="122" height="112" rx="15" fill="none" stroke="#2a2a2c" stroke-width="8"/>
+  <path d="M157,216 Q159,196 180,193" fill="none" stroke="#8b8b93" stroke-width="2.4" opacity=".5" stroke-linecap="round"/>
+
+  <!-- Nose-pad arm at the front edge -->
+  <path d="M148,250 q-14,8 -16,22" fill="none" stroke="#2a2a2c" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="130" cy="278" rx="5" ry="9" fill="#3a3a3e" opacity=".85"/>
+
+  <!-- Hinge block + screw -->
+  <rect x="250" y="198" width="24" height="26" rx="6" fill="#222225"/>
+  <circle cx="262" cy="211" r="3" fill="#5a5a62"/>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Vision side profile — Cat Eye frame (temple-arm view, upswept tip). Charcoal #2a2a2c, shared studio backdrop. -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e3e3e0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-300%" width="200%" height="700%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <linearGradient id="lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9f0f5"/>
+      <stop offset="1" stop-color="#c6d2db"/>
+    </linearGradient>
+    <clipPath id="lc">
+      <path d="M156,206 Q152,188 172,182 L252,154 Q276,146 276,170 L268,260 Q260,318 212,322 Q168,318 158,262 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Studio sweep + ground shadow -->
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="400" cy="396" rx="255" ry="19" fill="#17171c" opacity=".17" filter="url(#soft)"/>
+
+  <!-- Tapered temple flowing from the upswept tip: depth pass, face pass, sheen -->
+  <path d="M270,176 L586,184 Q605,184 614,202 Q636,236 642,268" fill="none" stroke="#1a1a1d" stroke-width="12.5" stroke-linecap="round"/>
+  <path d="M270,176 L586,184 Q605,184 614,202 Q636,236 642,268" fill="none" stroke="#2a2a2c" stroke-width="9" stroke-linecap="round"/>
+  <path d="M276,172.5 L582,180.5" fill="none" stroke="#86868e" stroke-width="1.8" stroke-linecap="round" opacity=".55"/>
+  <circle cx="642" cy="268" r="5.5" fill="#2a2a2c"/>
+
+  <!-- Cat-eye lens seen edge-on: rounded base sweeping up to a pointed outer corner -->
+  <path d="M156,206 Q152,188 172,182 L252,154 Q276,146 276,170 L268,260 Q260,318 212,322 Q168,318 158,262 Z" fill="url(#lens)" opacity=".34"/>
+  <g clip-path="url(#lc)">
+    <path d="M140,330 L256,134 L288,134 L172,330 Z" fill="#ffffff" opacity=".22"/>
+    <path d="M192,336 L294,162 L306,162 L204,336 Z" fill="#ffffff" opacity=".14"/>
+  </g>
+  <path d="M158,209 Q154,191 174,185 L254,157 Q278,149 278,173 L270,263 Q262,321 214,325 Q170,321 160,265 Z" fill="none" stroke="#19191c" stroke-width="10"/>
+  <path d="M156,206 Q152,188 172,182 L252,154 Q276,146 276,170 L268,260 Q260,318 212,322 Q168,318 158,262 Z" fill="none" stroke="#2a2a2c" stroke-width="7.5"/>
+  <path d="M166,196 Q186,182 214,172" fill="none" stroke="#8b8b93" stroke-width="2.4" opacity=".5" stroke-linecap="round"/>
+
+  <!-- Accent stud on the upswept corner -->
+  <circle cx="262" cy="164" r="4.5" fill="#3a3a3e"/>
+  <circle cx="260.5" cy="162.5" r="1.6" fill="#8b8b93" opacity=".7"/>
+
+  <!-- Moulded nose ledge at the front edge -->
+  <path d="M152,242 q-12,10 -13,24" fill="none" stroke="#2a2a2c" stroke-width="5" stroke-linecap="round"/>
+</svg>

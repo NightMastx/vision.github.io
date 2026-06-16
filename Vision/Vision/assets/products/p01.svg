@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vision · p01 Aster Round — studio front view (SPEC §8)
+     frameType: Round · frame #c9a227 (Gold) · lens #dce8f5 (Blue Light → fill-opacity .3) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <!-- Shared studio-sweep backdrop (identical in every product image) -->
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e3e3e0"/>
+    </radialGradient>
+    <!-- Soft blur for the ground shadow -->
+    <filter id="sh" x="-40%" y="-200%" width="180%" height="500%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <!-- Round lens geometry -->
+    <circle id="eL" cx="258" cy="252" r="95"/>
+    <circle id="eR" cx="542" cy="252" r="95"/>
+    <clipPath id="cL"><use href="#eL"/></clipPath>
+    <clipPath id="cR"><use href="#eR"/></clipPath>
+    <!-- Frame line-work: circular rims, curved bridge, temple stubs -->
+    <g id="fr" fill="none" stroke-linecap="round">
+      <use href="#eL"/>
+      <use href="#eR"/>
+      <path d="M351 230Q400 198 449 230"/>
+      <path d="M166 214C148 206 135 201 122 198"/>
+      <path d="M634 214C652 206 665 201 678 198"/>
+    </g>
+    <!-- Diagonal glass-reflection streaks (clipped to each lens) -->
+    <g id="gl" fill="#fff">
+      <path d="M205 120 262 112 150 400 96 406Z" opacity=".22"/>
+      <path d="M292 108 316 105 212 408 190 410Z" opacity=".15"/>
+    </g>
+    <!-- Top-of-rim sheen -->
+    <path id="hl" d="M178 201A95 95 0 0 1 338 201" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="400" cy="396" rx="238" ry="18" fill="#1c1c20" opacity=".16" filter="url(#sh)"/>
+
+  <!-- Lenses: blue-light tint -->
+  <use href="#eL" fill="#dce8f5" fill-opacity=".3"/>
+  <use href="#eR" fill="#dce8f5" fill-opacity=".3"/>
+  <g clip-path="url(#cL)"><use href="#gl"/></g>
+  <g clip-path="url(#cR)"><use href="#gl" x="284"/></g>
+
+  <!-- Frame: darker under-stroke for depth, then the gold finish, then sheen -->
+  <use href="#fr" stroke="#9c7c1b" stroke-width="14" transform="translate(0 2.5)"/>
+  <use href="#fr" stroke="#c9a227" stroke-width="11"/>
+  <use href="#hl"/>
+  <use href="#hl" x="284"/>
+
+  <!-- Nose-pad arms + pads -->
+  <g fill="none" stroke="#9c7c1b" stroke-width="4" stroke-linecap="round">
+    <path d="M349 264Q358 272 361 281"/>
+    <path d="M451 264Q442 272 439 281"/>
+  </g>
+  <ellipse cx="364" cy="291" rx="6.5" ry="11" fill="#9c7c1b" transform="rotate(-14 364 291)"/>
+  <ellipse cx="436" cy="291" rx="6.5" ry="11" fill="#9c7c1b" transform="rotate(14 436 291)"/>
+</svg>

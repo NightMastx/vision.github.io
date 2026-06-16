@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision — Premium Eyewear</title>
+  <meta name="description" content="Vision — a premium online eyewear boutique. Shop designer-grade frames or build your own custom pair.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='18' cy='36' r='12' fill='none' stroke='%23c9a227' stroke-width='5'/%3E%3Ccircle cx='46' cy='36' r='12' fill='none' stroke='%23c9a227' stroke-width='5'/%3E%3Cpath d='M30 36h4M6 36l-4-10M58 36l4-10' stroke='%23c9a227' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Theme bootstrap — applies saved theme before first paint (no flash).
+    (function () {
+      var t = localStorage.getItem('vision-theme');
+      if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER / NAVBAR (§4.1) — sticky glass bar; JS adds .scrolled -->
+  <!-- ============================================================ -->
+  <header id="navbar" class="navbar">
+    <a class="navbar-logo" href="#home" aria-label="Vision — home">VISION</a>
+
+    <!-- Primary navigation: route links + Information dropdown -->
+    <nav id="nav-menu" aria-label="Primary">
+      <a class="nav-link" data-route="home" href="#home">Home</a>
+      <a class="nav-link" data-route="shop" href="#shop">Shop</a>
+      <a class="nav-link" data-route="constructor" href="#constructor">Constructor</a>
+
+      <div class="nav-dropdown">
+        <button id="nav-info-btn" type="button" aria-expanded="false" aria-haspopup="true">
+          Information
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a class="nav-link" data-route="about" href="#about">About Us</a>
+          <a class="nav-link" data-route="faq" href="#faq">FAQ</a>
+          <a class="nav-link" data-route="shipping" href="#shipping">Shipping</a>
+          <a class="nav-link" data-route="returns" href="#returns">Returns &amp; Refunds</a>
+          <a class="nav-link" data-route="lens-guide" href="#lens-guide">Lens Guide</a>
+          <a class="nav-link" data-route="size-guide" href="#size-guide">Frame Size Guide</a>
+          <a class="nav-link" data-route="contact" href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Theme switch: CSS shows .icon-sun in dark mode, .icon-moon in light mode -->
+    <button id="theme-toggle" type="button" aria-label="Toggle color theme">
+      <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <!-- Cart link + live quantity badge (JS hides badge at 0) -->
+    <a id="nav-cart" href="#cart" aria-label="View your cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span id="cart-count">0</span>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu"
+            aria-label="Toggle navigation menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- MAIN — all views live here; the Router toggles .view--active -->
+  <!-- ============================================================ -->
+  <main id="app">
+
+    <!-- ========================================================== -->
+    <!-- VIEW: HOME (§4.3)                                          -->
+    <!-- ========================================================== -->
+    <section class="view view--active" id="view-home">
+
+      <!-- Hero banner -->
+      <div class="hero">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Premium Eyewear</span>
+          <h1>Frames Worth a Second Look</h1>
+          <p class="hero-tagline">
+            Designer-grade glasses in six signature silhouettes — or step into the
+            constructor and build a pair that is unmistakably yours.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#shop">Shop the Collection</a>
+            <a class="btn btn-ghost" href="#constructor">Build Your Own</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="assets/hero.svg" alt="">
+        </div>
+      </div>
+
+      <!-- Promo strip — generic, neutral blurbs only -->
+      <div class="hero-promo">
+        <div class="promo-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1" y="3" width="15" height="13" rx="1"></rect>
+            <path d="M16 8h4l3 4v4h-7V8z"></path>
+            <circle cx="6" cy="19" r="2"></circle>
+            <circle cx="19" cy="19" r="2"></circle>
+          </svg>
+          <p>Free shipping on orders over $150</p>
+        </div>
+        <div class="promo-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <p>30-day returns window — see Returns page</p>
+        </div>
+        <div class="promo-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          <p>Design a one-of-one pair in the Constructor</p>
+        </div>
+      </div>
+
+      <!-- Curated collections — grids are rendered by script.js (§6.9) -->
+      <section class="section">
+        <h2>Featured</h2>
+        <div id="featured-grid" class="grid-products"></div>
+      </section>
+
+      <section class="section">
+        <h2>Best Sellers</h2>
+        <div id="bestsellers-grid" class="grid-products"></div>
+      </section>
+
+      <section class="section">
+        <h2>New Arrivals</h2>
+        <div id="newarrivals-grid" class="grid-products"></div>
+      </section>
+
+      <!-- Newsletter — UI only: no emails are sent or stored (§4.3) -->
+      <section class="newsletter">
+        <h2>Stay in Focus</h2>
+        <p>New silhouettes, constructor updates, and seasonal edits — straight to your inbox.</p>
+        <form id="newsletter-form" novalidate>
+          <label class="sr-only" for="newsletter-email">Email address</label>
+          <input id="newsletter-email" type="email" required placeholder="you@example.com"
+                 autocomplete="email">
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+        </form>
+      </section>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: SHOP (§4.4)                                          -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-shop">
+      <div class="container">
+        <h1>Shop All Frames</h1>
+
+        <!-- Toolbar: search, sort, mobile filter toggle -->
+        <div class="shop-toolbar">
+          <label class="sr-only" for="search-input">Search frames</label>
+          <input id="search-input" type="search" placeholder="Search by name, shape, lens or color…">
+
+          <label class="sr-only" for="sort-select">Sort products</label>
+          <select id="sort-select">
+            <option value="popular">Most Popular</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+          </select>
+
+          <!-- Visible on ≤820px only; opens the filter panel -->
+          <button id="filters-toggle" type="button" class="btn btn-ghost btn-sm"
+                  aria-expanded="false" aria-controls="shop-filters">Filters</button>
+        </div>
+
+        <div class="shop-layout">
+
+          <!-- Filter sidebar — checkboxes AND across groups, OR within (§6.5) -->
+          <aside id="shop-filters" aria-label="Product filters">
+
+            <div class="filter-group">
+              <h3>Frame Shape</h3>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="frameType" value="Round"><span>Round</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="frameType" value="Square"><span>Square</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="frameType" value="Aviator"><span>Aviator</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="frameType" value="Rectangle"><span>Rectangle</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="frameType" value="Cat Eye"><span>Cat Eye</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="frameType" value="Rimless"><span>Rimless</span></label>
+            </div>
+
+            <div class="filter-group">
+              <h3>Lens Type</h3>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="lensType" value="Clear"><span>Clear</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="lensType" value="Blue Light"><span>Blue Light</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="lensType" value="Sunglasses"><span>Sunglasses</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="lensType" value="Polarized"><span>Polarized</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="lensType" value="Photochromic"><span>Photochromic</span></label>
+            </div>
+
+            <div class="filter-group">
+              <h3>Gender</h3>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="gender" value="Men"><span>Men</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="gender" value="Women"><span>Women</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="gender" value="Unisex"><span>Unisex</span></label>
+            </div>
+
+            <div class="filter-group">
+              <h3>Frame Color</h3>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="color" value="Black"><span>Black</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="color" value="White"><span>White</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="color" value="Silver"><span>Silver</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="color" value="Gold"><span>Gold</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="color" value="Brown"><span>Brown</span></label>
+              <label class="filter-item"><input class="filter-cb" type="checkbox" data-group="color" value="Blue"><span>Blue</span></label>
+            </div>
+
+            <div class="filter-group">
+              <h3>Max Price</h3>
+              <label class="sr-only" for="price-range">Maximum price</label>
+              <input id="price-range" type="range" min="50" max="350" step="10" value="350">
+              <span id="price-max-label">$350</span>
+            </div>
+
+            <button id="clear-filters" type="button" class="btn btn-ghost btn-sm">Clear all</button>
+          </aside>
+
+          <!-- Results -->
+          <div class="shop-main">
+            <p id="results-count" aria-live="polite"></p>
+            <div id="shop-grid" class="grid-products"></div>
+            <div id="shop-empty" class="hidden">
+              <p>No frames match your current search and filters.</p>
+              <p>Try widening the price range, removing a filter, or pressing
+                 <strong>Clear all</strong> in the filter panel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: CONSTRUCTOR (§4.7)                                   -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-constructor">
+      <div class="container">
+        <h1>Glasses Constructor</h1>
+        <p class="view-intro">Pick a silhouette, material, colors and lenses — the preview and price
+           update live. Add your build straight to the cart when it feels right.</p>
+
+        <div class="ctor-layout">
+
+          <!-- Live preview. Initial `d` values = Round geometry; script.js
+               swaps paths per FRAME_GEOMETRY and recolors parts (§6.8). -->
+          <div class="ctor-preview-panel">
+            <svg id="ctor-svg" viewBox="0 0 600 260" role="img" aria-label="Preview of your custom glasses"
+                 xmlns="http://www.w3.org/2000/svg">
+              <!-- Temple arms (drawn first so rims overlap their hinge ends) -->
+              <path id="ctor-temple-l" d="M 112 112 C 84 104 48 102 24 110"
+                    fill="none" stroke="#1c1c1e" stroke-width="7" stroke-linecap="round"></path>
+              <path id="ctor-temple-r" d="M 488 112 C 516 104 552 102 576 110"
+                    fill="none" stroke="#1c1c1e" stroke-width="7" stroke-linecap="round"></path>
+              <!-- Lenses (tinted fills; opacity driven by lens type in JS) -->
+              <path id="ctor-lens-l" d="M 105 130 a 75 55 0 1 0 150 0 a 75 55 0 1 0 -150 0 Z"
+                    fill="#555a60" fill-opacity="0.18" stroke="none"></path>
+              <path id="ctor-lens-r" d="M 345 130 a 75 55 0 1 0 150 0 a 75 55 0 1 0 -150 0 Z"
+                    fill="#555a60" fill-opacity="0.18" stroke="none"></path>
+              <!-- Rims (stroke-only outlines over the lenses) -->
+              <path id="ctor-rim-l" d="M 105 130 a 75 55 0 1 0 150 0 a 75 55 0 1 0 -150 0 Z"
+                    fill="none" stroke="#1c1c1e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path id="ctor-rim-r" d="M 345 130 a 75 55 0 1 0 150 0 a 75 55 0 1 0 -150 0 Z"
+                    fill="none" stroke="#1c1c1e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+              <!-- Bridge -->
+              <path id="ctor-bridge" d="M 250 112 C 270 96 330 96 350 112"
+                    fill="none" stroke="#1c1c1e" stroke-width="7" stroke-linecap="round"></path>
+            </svg>
+            <p id="ctor-name-label">Custom Round · Plastic</p>
+          </div>
+
+          <!-- Option groups — JS toggles aria-pressed on .ctor-opt buttons -->
+          <div class="ctor-options">
+
+            <fieldset class="ctor-group" data-option="frame">
+              <legend>Frame Shape</legend>
+              <button type="button" class="ctor-opt" data-value="Round" aria-pressed="true">Round</button>
+              <button type="button" class="ctor-opt" data-value="Square" aria-pressed="false">Square</button>
+              <button type="button" class="ctor-opt" data-value="Aviator" aria-pressed="false">Aviator</button>
+              <button type="button" class="ctor-opt" data-value="Rectangle" aria-pressed="false">Rectangle</button>
+              <button type="button" class="ctor-opt" data-value="Cat Eye" aria-pressed="false">Cat Eye</button>
+              <button type="button" class="ctor-opt" data-value="Rimless" aria-pressed="false">Rimless</button>
+            </fieldset>
+
+            <fieldset class="ctor-group" data-option="material">
+              <legend>Material</legend>
+              <button type="button" class="ctor-opt" data-value="Plastic" aria-pressed="true">Plastic</button>
+              <button type="button" class="ctor-opt" data-value="Metal" aria-pressed="false">Metal</button>
+              <button type="button" class="ctor-opt" data-value="Titanium" aria-pressed="false">Titanium</button>
+              <button type="button" class="ctor-opt" data-value="Carbon Fiber" aria-pressed="false">Carbon Fiber</button>
+            </fieldset>
+
+            <fieldset class="ctor-group" data-option="frameColor">
+              <legend>Frame Color</legend>
+              <button type="button" class="ctor-opt swatch" data-value="#1c1c1e" title="Black"
+                      aria-label="Black" aria-pressed="true" style="background:#1c1c1e"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#f2f0eb" title="White"
+                      aria-label="White" aria-pressed="false" style="background:#f2f0eb"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#c0c4c8" title="Silver"
+                      aria-label="Silver" aria-pressed="false" style="background:#c0c4c8"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#c9a227" title="Gold"
+                      aria-label="Gold" aria-pressed="false" style="background:#c9a227"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#6b4a2f" title="Brown"
+                      aria-label="Brown" aria-pressed="false" style="background:#6b4a2f"></button>
+              <!-- Custom frame color (+$10 — pricing handled in script.js) -->
+              <label class="ctor-custom" for="ctor-frame-custom">
+                <input id="ctor-frame-custom" type="color" value="#c9a227">
+                <span>Custom</span>
+              </label>
+            </fieldset>
+
+            <fieldset class="ctor-group" data-option="lensType">
+              <legend>Lens Type</legend>
+              <button type="button" class="ctor-opt" data-value="Clear" aria-pressed="true">Clear</button>
+              <button type="button" class="ctor-opt" data-value="Blue Light" aria-pressed="false">Blue Light</button>
+              <button type="button" class="ctor-opt" data-value="Sunglasses" aria-pressed="false">Sunglasses</button>
+              <button type="button" class="ctor-opt" data-value="Polarized" aria-pressed="false">Polarized</button>
+              <button type="button" class="ctor-opt" data-value="Photochromic" aria-pressed="false">Photochromic</button>
+            </fieldset>
+
+            <fieldset class="ctor-group" data-option="lensColor">
+              <legend>Lens Tint</legend>
+              <button type="button" class="ctor-opt swatch" data-value="#555a60" title="Gray"
+                      aria-label="Gray" aria-pressed="true" style="background:#555a60"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#5a4634" title="Brown"
+                      aria-label="Brown" aria-pressed="false" style="background:#5a4634"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#3e5547" title="Green"
+                      aria-label="Green" aria-pressed="false" style="background:#3e5547"></button>
+              <button type="button" class="ctor-opt swatch" data-value="#33506e" title="Blue"
+                      aria-label="Blue" aria-pressed="false" style="background:#33506e"></button>
+              <!-- Custom lens tint (+$10 — pricing handled in script.js) -->
+              <label class="ctor-custom" for="ctor-lens-custom">
+                <input id="ctor-lens-custom" type="color" value="#555a60">
+                <span>Custom</span>
+              </label>
+            </fieldset>
+
+            <!-- Running total + itemized breakdown (rendered by script.js) -->
+            <div class="ctor-pricebar">
+              <ul id="ctor-breakdown"></ul>
+              <span id="ctor-price">$79.00</span>
+              <button id="ctor-add-cart" type="button" class="btn btn-primary">Add Custom Build to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: CART (§4.8)                                          -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-cart">
+      <div class="container">
+        <h1>Your Cart</h1>
+
+        <div class="cart-layout">
+          <div class="cart-main">
+            <!-- Cart rows are rendered by script.js (article.cart-row[data-key]) -->
+            <div id="cart-items"></div>
+
+            <!-- Shown by JS when the cart is empty -->
+            <div id="cart-empty">
+              <p>Your cart is empty — nothing to look at yet.</p>
+              <a class="btn btn-primary" href="#shop">Browse the Collection</a>
+            </div>
+          </div>
+
+          <aside class="cart-summary" aria-label="Cart summary">
+            <h2>Summary</h2>
+            <div class="summary-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+            <div class="summary-row"><span>Estimated tax</span><span id="cart-tax">$0.00</span></div>
+            <div class="summary-row summary-row--total"><span>Total</span><span id="cart-total">$0.00</span></div>
+            <p class="summary-note">Shipping is calculated at checkout. Orders of $150 or more ship free.</p>
+            <a id="checkout-btn" class="btn btn-primary" href="#checkout">Proceed to Checkout</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: CHECKOUT (§4.9)                                      -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-checkout">
+      <div class="container">
+        <h1>Checkout</h1>
+
+        <!-- Shown by JS when there is nothing to check out -->
+        <div id="checkout-empty" class="hidden">
+          <p>Your cart is empty, so there is nothing to check out yet.</p>
+          <a class="btn btn-primary" href="#shop">Back to the Shop</a>
+        </div>
+
+        <div class="checkout-layout">
+          <!-- novalidate: validation + the demo submit toast live in script.js -->
+          <form id="checkout-form" novalidate>
+
+            <!-- Billing -->
+            <section class="co-section" id="co-billing">
+              <h2>Billing Information</h2>
+              <div class="co-grid">
+                <div class="co-field">
+                  <label for="bill-first">First name</label>
+                  <input id="bill-first" name="bill-first" type="text" autocomplete="billing given-name">
+                </div>
+                <div class="co-field">
+                  <label for="bill-last">Last name</label>
+                  <input id="bill-last" name="bill-last" type="text" autocomplete="billing family-name">
+                </div>
+                <div class="co-field">
+                  <label for="bill-email">Email</label>
+                  <input id="bill-email" name="bill-email" type="email" autocomplete="email">
+                </div>
+                <div class="co-field">
+                  <label for="bill-phone">Phone</label>
+                  <input id="bill-phone" name="bill-phone" type="tel" autocomplete="billing tel">
+                </div>
+                <div class="co-field co-field--wide">
+                  <label for="bill-address1">Address line 1</label>
+                  <input id="bill-address1" name="bill-address1" type="text" data-field="address1"
+                         autocomplete="billing address-line1">
+                </div>
+                <div class="co-field co-field--wide">
+                  <label for="bill-address2">Address line 2 <span class="optional">(optional)</span></label>
+                  <input id="bill-address2" name="bill-address2" type="text" data-field="address2"
+                         autocomplete="billing address-line2">
+                </div>
+                <div class="co-field">
+                  <label for="bill-city">City</label>
+                  <input id="bill-city" name="bill-city" type="text" data-field="city"
+                         autocomplete="billing address-level2">
+                </div>
+                <div class="co-field">
+                  <label for="bill-state">State / Province</label>
+                  <input id="bill-state" name="bill-state" type="text" data-field="state"
+                         autocomplete="billing address-level1">
+                </div>
+                <div class="co-field">
+                  <label for="bill-postal">Postal code</label>
+                  <input id="bill-postal" name="bill-postal" type="text" data-field="postal"
+                         autocomplete="billing postal-code">
+                </div>
+                <div class="co-field">
+                  <label for="bill-country">Country</label>
+                  <!-- OWNER TODO: Populate this select with the countries you ship to. -->
+                  <select id="bill-country" name="bill-country" data-field="country"
+                          autocomplete="billing country">
+                    <option value="" selected>Select a country…</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <!-- Shipping -->
+            <section class="co-section" id="co-shipping">
+              <h2>Shipping Information</h2>
+              <!-- When checked, script.js copies billing values into the matching
+                   shipping fields (paired via matching data-field attributes). -->
+              <label class="co-same" for="same-as-billing">
+                <input id="same-as-billing" type="checkbox">
+                <span>Same as billing</span>
+              </label>
+              <div class="co-grid">
+                <div class="co-field co-field--wide">
+                  <label for="ship-address1">Address line 1</label>
+                  <input id="ship-address1" name="ship-address1" type="text" data-field="address1"
+                         autocomplete="shipping address-line1">
+                </div>
+                <div class="co-field co-field--wide">
+                  <label for="ship-address2">Address line 2 <span class="optional">(optional)</span></label>
+                  <input id="ship-address2" name="ship-address2" type="text" data-field="address2"
+                         autocomplete="shipping address-line2">
+                </div>
+                <div class="co-field">
+                  <label for="ship-city">City</label>
+                  <input id="ship-city" name="ship-city" type="text" data-field="city"
+                         autocomplete="shipping address-level2">
+                </div>
+                <div class="co-field">
+                  <label for="ship-state">State / Province</label>
+                  <input id="ship-state" name="ship-state" type="text" data-field="state"
+                         autocomplete="shipping address-level1">
+                </div>
+                <div class="co-field">
+                  <label for="ship-postal">Postal code</label>
+                  <input id="ship-postal" name="ship-postal" type="text" data-field="postal"
+                         autocomplete="shipping postal-code">
+                </div>
+                <div class="co-field">
+                  <label for="ship-country">Country</label>
+                  <!-- OWNER TODO: Populate this select with the countries you ship to. -->
+                  <select id="ship-country" name="ship-country" data-field="country"
+                          autocomplete="shipping country">
+                    <option value="" selected>Select a country…</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <!-- Payment — UI ONLY: no card data is processed, transmitted or stored. -->
+            <section class="co-section" id="co-payment">
+              <h2>Payment Information</h2>
+              <div class="co-grid">
+                <div class="co-field co-field--wide">
+                  <label for="pay-name">Cardholder name</label>
+                  <input id="pay-name" name="pay-name" type="text" autocomplete="cc-name">
+                </div>
+                <div class="co-field co-field--wide">
+                  <label for="pay-number">Card number</label>
+                  <input id="pay-number" name="pay-number" type="text" inputmode="numeric"
+                         placeholder="•••• •••• •••• ••••" autocomplete="cc-number">
+                </div>
+                <div class="co-field">
+                  <label for="pay-expiry">Expiry (MM/YY)</label>
+                  <input id="pay-expiry" name="pay-expiry" type="text" inputmode="numeric"
+                         placeholder="MM/YY" autocomplete="cc-exp">
+                </div>
+                <div class="co-field">
+                  <label for="pay-cvc">CVC</label>
+                  <input id="pay-cvc" name="pay-cvc" type="text" inputmode="numeric"
+                         placeholder="•••" autocomplete="cc-csc">
+                </div>
+              </div>
+            </section>
+          </form>
+
+          <!-- Order summary — figures rendered by script.js (§6.7) -->
+          <aside class="co-summary" aria-label="Order summary">
+            <h2>Order Summary</h2>
+            <ul id="os-items"></ul>
+            <div class="summary-row"><span>Subtotal</span><span id="os-subtotal">$0.00</span></div>
+            <div class="summary-row"><span>Shipping</span><span id="os-shipping">$0.00</span></div>
+            <div class="summary-row"><span>Tax</span><span id="os-tax">$0.00</span></div>
+            <div class="summary-row summary-row--total"><span>Total</span><span id="os-total">$0.00</span></div>
+            <!-- Demo checkout: submit shows a toast only — no order is placed. -->
+            <button id="place-order-btn" type="submit" form="checkout-form" class="btn btn-primary">Place Order</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: ABOUT (§4.10)                                        -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-about">
+      <div class="container info-page">
+        <h1>About Vision</h1>
+
+        <h2>Our Story</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your company story — founding, mission, what makes your eyewear different. -->
+          [Owner content: company story &amp; mission]
+        </div>
+
+        <h2>Craft &amp; Materials</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with details about your manufacturing, materials sourcing and quality standards. -->
+          [Owner content: craftsmanship, materials &amp; quality standards]
+        </div>
+
+        <h2>The People Behind Vision</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your team introduction, photos and bios. -->
+          [Owner content: team introduction]
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: FAQ (§4.10)                                          -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-faq">
+      <div class="container info-page">
+        <h1>Frequently Asked Questions</h1>
+        <p class="view-intro">Answers to the questions we hear most often.</p>
+
+        <!-- OWNER TODO: Replace each question and answer below with your real FAQ content. -->
+        <details class="faq-item">
+          <summary><span class="owner-placeholder-inline">[Owner: question 1 — e.g. ordering &amp; prescription lenses]</span></summary>
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with the answer to question 1. -->
+            [Owner content: answer to question 1]
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary><span class="owner-placeholder-inline">[Owner: question 2 — e.g. delivery times &amp; tracking]</span></summary>
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with the answer to question 2. -->
+            [Owner content: answer to question 2]
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary><span class="owner-placeholder-inline">[Owner: question 3 — e.g. returns &amp; exchanges]</span></summary>
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with the answer to question 3. -->
+            [Owner content: answer to question 3]
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary><span class="owner-placeholder-inline">[Owner: question 4 — e.g. warranty &amp; repairs]</span></summary>
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with the answer to question 4. -->
+            [Owner content: answer to question 4]
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary><span class="owner-placeholder-inline">[Owner: question 5 — e.g. custom constructor builds]</span></summary>
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with the answer to question 5. -->
+            [Owner content: answer to question 5]
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary><span class="owner-placeholder-inline">[Owner: question 6 — e.g. payment methods &amp; security]</span></summary>
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with the answer to question 6. -->
+            [Owner content: answer to question 6]
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: SHIPPING (§4.10)                                     -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-shipping">
+      <div class="container info-page">
+        <h1>Shipping Information</h1>
+
+        <h2>Rates &amp; Delivery Estimates</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your shipping rates and delivery estimates. -->
+          [Owner content: shipping rates &amp; delivery estimates]
+        </div>
+
+        <h2>Regions &amp; Carriers</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with the regions you ship to and the carriers you use. -->
+          [Owner content: shipping regions &amp; carriers]
+        </div>
+
+        <h2>Order Tracking</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with how customers receive and use tracking information. -->
+          [Owner content: order tracking instructions]
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: RETURNS (§4.10)                                      -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-returns">
+      <div class="container info-page">
+        <h1>Returns &amp; Refunds</h1>
+
+        <h2>Return Policy</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your return window, conditions and exclusions. -->
+          [Owner content: return policy — window, conditions, exclusions]
+        </div>
+
+        <h2>How to Start a Return</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your step-by-step return procedure. -->
+          [Owner content: return procedure]
+        </div>
+
+        <h2>Refunds &amp; Exchanges</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your refund timelines and exchange options. -->
+          [Owner content: refund timelines &amp; exchange options]
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: LENS GUIDE (§4.10) — generic educational content     -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-lens-guide">
+      <div class="container info-page">
+        <h1>Lens Guide</h1>
+        <p class="view-intro">A quick, plain-language overview of the lens types you will see across
+           the collection and inside the constructor.</p>
+
+        <h2>Clear</h2>
+        <p>Standard optical lenses with no tint. A neutral everyday choice — they simply correct
+           (or protect) without changing how colors look.</p>
+
+        <h2>Blue Light</h2>
+        <p>Lenses with a coating that filters part of the high-energy blue-violet range emitted by
+           screens. Many people who spend long hours in front of monitors choose them for visual
+           comfort; the faint residual tint is barely noticeable.</p>
+
+        <h2>Sunglasses</h2>
+        <p>Tinted lenses that reduce overall brightness. Tint darkness affects glare and comfort,
+           while UV protection comes from the lens material and coatings — a lens can be dark
+           without blocking UV, so the two should not be confused.</p>
+
+        <h2>Polarized</h2>
+        <p>Polarized lenses contain a filter that blocks horizontally reflected light — the harsh
+           glare that bounces off water, snow, car hoods and wet roads. The result is noticeably
+           crisper contrast outdoors. One trade-off: some LCD screens can look dim or patchy
+           through a polarizing filter.</p>
+
+        <h2>Photochromic</h2>
+        <p>Light-adaptive lenses that darken in sunlight and return to near-clear indoors. They
+           react to UV exposure, so they darken less behind a car windshield, which already blocks
+           most UV.</p>
+
+        <h2>Lens Options at Vision</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your available coatings, prescription options and lens pricing. -->
+          [Owner content: available coatings, prescription options &amp; lens pricing]
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: SIZE GUIDE (§4.10) — generic educational content     -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-size-guide">
+      <div class="container info-page">
+        <h1>Frame Size Guide</h1>
+        <p class="view-intro">Three numbers describe almost every pair of glasses. Here is how to
+           read them — and how to measure a frame you already love.</p>
+
+        <h2>The Three Key Measurements</h2>
+        <!-- Simple inline measurement diagram (uses currentColor, so it adapts to both themes) -->
+        <svg class="size-diagram" viewBox="0 0 520 250" role="img"
+             aria-label="Diagram of a glasses frame showing lens width, bridge width and total frame width"
+             xmlns="http://www.w3.org/2000/svg">
+          <!-- Frame outline -->
+          <rect x="80" y="55" width="150" height="100" rx="30" fill="none" stroke="currentColor" stroke-width="5"></rect>
+          <rect x="290" y="55" width="150" height="100" rx="30" fill="none" stroke="currentColor" stroke-width="5"></rect>
+          <path d="M230 80 Q260 58 290 80" fill="none" stroke="currentColor" stroke-width="5"></path>
+          <path d="M80 75 L30 62" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+          <path d="M440 75 L490 62" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+          <!-- Bridge width callout -->
+          <line x1="232" y1="40" x2="288" y2="40" stroke="currentColor" stroke-width="1.5"></line>
+          <line x1="232" y1="34" x2="232" y2="46" stroke="currentColor" stroke-width="1.5"></line>
+          <line x1="288" y1="34" x2="288" y2="46" stroke="currentColor" stroke-width="1.5"></line>
+          <text x="260" y="26" text-anchor="middle" font-size="14" fill="currentColor">Bridge</text>
+          <!-- Lens width callout -->
+          <line x1="80" y1="180" x2="230" y2="180" stroke="currentColor" stroke-width="1.5"></line>
+          <line x1="80" y1="174" x2="80" y2="186" stroke="currentColor" stroke-width="1.5"></line>
+          <line x1="230" y1="174" x2="230" y2="186" stroke="currentColor" stroke-width="1.5"></line>
+          <text x="155" y="200" text-anchor="middle" font-size="14" fill="currentColor">Lens width</text>
+          <!-- Frame width callout -->
+          <line x1="80" y1="222" x2="440" y2="222" stroke="currentColor" stroke-width="1.5"></line>
+          <line x1="80" y1="216" x2="80" y2="228" stroke="currentColor" stroke-width="1.5"></line>
+          <line x1="440" y1="216" x2="440" y2="228" stroke="currentColor" stroke-width="1.5"></line>
+          <text x="260" y="244" text-anchor="middle" font-size="14" fill="currentColor">Frame width</text>
+        </svg>
+
+        <ul>
+          <li><strong>Lens width</strong> — the horizontal width of one lens, typically 40–62&nbsp;mm.</li>
+          <li><strong>Bridge width</strong> — the gap between the lenses where the frame rests on
+              your nose, typically 14–24&nbsp;mm.</li>
+          <li><strong>Temple length</strong> — the arm from hinge to tip, most commonly 135–150&nbsp;mm.</li>
+        </ul>
+
+        <h2>Where to Find the Numbers</h2>
+        <p>Most frames print their measurements on the inside of a temple arm in the form
+           <strong>52&nbsp;□&nbsp;19&nbsp;145</strong> — lens width, bridge width and temple length
+           in millimeters. If you already own glasses that fit well, those three numbers are the
+           best starting point for your next pair.</p>
+
+        <h2>Measuring Without a Reference Pair</h2>
+        <p>Use a millimeter ruler in front of a mirror: measure the distance between your temples
+           (the flat areas beside your eyes) and compare it with a frame's total width — frame
+           width close to your face width usually means a comfortable fit. As a loose rule of
+           thumb, total frame widths under about 130&nbsp;mm suit narrower faces, 130–138&nbsp;mm
+           suit most, and above 138&nbsp;mm suit wider faces.</p>
+
+        <h2>Vision Fit Notes</h2>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with model-by-model sizing notes or a size chart for your frames. -->
+          [Owner content: model-by-model size chart &amp; fit recommendations]
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- VIEW: CONTACT (§4.10)                                      -->
+    <!-- ========================================================== -->
+    <section class="view" id="view-contact">
+      <div class="container info-page">
+        <h1>Contact</h1>
+        <p class="view-intro">Send us a note and we will get back to you.</p>
+
+        <div class="contact-layout">
+          <!-- Demo form: submit shows a toast only — no message is sent (§6.9). -->
+          <form id="contact-form" novalidate>
+            <div class="co-field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="contact-name" type="text" autocomplete="name">
+            </div>
+            <div class="co-field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="contact-email" type="email" autocomplete="email">
+            </div>
+            <div class="co-field">
+              <label for="contact-subject">Subject</label>
+              <input id="contact-subject" name="contact-subject" type="text">
+            </div>
+            <div class="co-field">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="contact-message" rows="6"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+
+          <div class="owner-placeholder">
+            <!-- OWNER TODO: Replace this block with your real contact details — support email, phone, address, opening hours. -->
+            [Owner content: support email, phone, studio address &amp; opening hours]
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER (§4.11)                                               -->
+  <!-- ============================================================ -->
+  <footer id="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="navbar-logo" href="#home">VISION</a>
+        <p>Eyewear built around how you actually see the world.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <a href="#shop">All Frames</a>
+        <a href="#constructor">Glasses Constructor</a>
+        <a href="#cart">Your Cart</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Information</h3>
+        <a href="#about">About Us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#shipping">Shipping</a>
+        <a href="#returns">Returns &amp; Refunds</a>
+        <a href="#lens-guide">Lens Guide</a>
+        <a href="#size-guide">Frame Size Guide</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <div class="owner-placeholder">
+          <!-- OWNER TODO: Replace this block with your social media links. -->
+          [Owner content: social media links]
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <!-- OWNER TODO: Replace the inline placeholder with your legal entity / rights statement. -->
+      <p>© <span id="footer-year"></span> Vision ·
+        <span class="owner-placeholder-inline">[Owner: legal entity / rights statement]</span></p>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- PRODUCT MODAL (§4.6) — opened by Quick View / card image     -->
+  <!-- ============================================================ -->
+  <div id="product-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true"
+       aria-labelledby="pm-name">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close aria-label="Close product details">&times;</button>
+
+      <!-- Gallery: main image (zoom on hover) + 3 thumbnails (§6.6) -->
+      <div class="pm-gallery">
+        <div class="pm-main-wrap">
+          <img id="pm-main" alt="">
+        </div>
+        <div id="pm-thumbs">
+          <button class="pm-thumb" type="button" aria-label="View front image"><img alt=""></button>
+          <button class="pm-thumb" type="button" aria-label="View side profile image"><img alt=""></button>
+          <button class="pm-thumb" type="button" aria-label="View lens detail image"><img alt=""></button>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="pm-info">
+        <h2 id="pm-name"></h2>
+        <div id="pm-rating"></div>
+        <p id="pm-price"></p>
+        <p id="pm-desc"></p>
+
+        <!-- Color variants: script.js injects a .swatch dot for the product's color. -->
+        <div id="pm-colors"></div>
+
+        <!-- Specs (frame width, lens width, bridge, temple, weight) — filled by JS -->
+        <dl id="pm-specs"></dl>
+
+        <details id="pm-frame-info">
+          <summary>Frame Information</summary>
+          <p>Frame dimensions are listed in the specifications above (all values in millimeters).
+             For help reading those numbers or measuring your fit, see the Frame Size Guide.</p>
+        </details>
+
+        <details id="pm-lens-info">
+          <summary>Lens Information</summary>
+          <p>Lens behavior depends on the lens type shown above — tint, glare handling and
+             light adaptation all differ. The Lens Guide explains each type in plain language.</p>
+        </details>
+
+        <!-- Quantity stepper (1–10) -->
+        <div class="pm-qty">
+          <button id="pm-qty-minus" type="button" aria-label="Decrease quantity">&minus;</button>
+          <input id="pm-qty" type="number" value="1" min="1" max="10" aria-label="Quantity">
+          <button id="pm-qty-plus" type="button" aria-label="Increase quantity">+</button>
+        </div>
+
+        <div class="pm-actions">
+          <button id="pm-add-cart" type="button" class="btn btn-primary">Add to Cart</button>
+          <button id="pm-wishlist" type="button" class="btn btn-ghost" aria-pressed="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OVERLAYS (§4.12)                                             -->
+  <!-- ============================================================ -->
+  <!-- Toast notifications (script.js appends .toast elements here) -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Route-change loader veil (script.js toggles .visible) -->
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-ring"></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TEMPLATES (§4.5)                                             -->
+  <!-- ============================================================ -->
+  <template id="tpl-product-card">
+    <article class="product-card reveal" data-id="">
+      <div class="card-badges"></div>
+      <button class="card-wish" data-action="wish" aria-pressed="false" aria-label="Add to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+      <div class="card-img-wrap"><img class="card-img" loading="lazy" alt=""></div>
+      <div class="card-body">
+        <h3 class="card-name"></h3>
+        <p class="card-meta"></p>
+        <div class="card-rating"></div>
+        <div class="card-foot">
+          <span class="card-price"></span>
+          <div class="card-actions">
+            <button class="btn btn-ghost btn-sm" data-action="quick-view">Quick View</button>
+            <button class="btn btn-primary btn-sm" data-action="add-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- All behavior lives in script.js (deferred — §11) -->
+  <script src="script.js" defer></script>
+</body>
+</html>
